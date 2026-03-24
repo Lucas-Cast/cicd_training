@@ -5,6 +5,10 @@ app.use(express.json());
 
 app.get('/', (req, res) => {
     return res.status(200).send("Bem-vindo a API da sua primeira pipeline!");
-})
+});
 
-app.listen(3000);
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+    console.log("Rodando na porta", PORT);
+});
