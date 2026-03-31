@@ -9,7 +9,7 @@
   "scripts": {
     "test:unit": "jest tests/*.unit.test.js",
     "test:e2e": "jest tests/*.e2e.test.js",
-    "start": "node src/server.js"
+    "dev": "node src/server.js"
   },
   "author": "",
   "license": "ISC",
