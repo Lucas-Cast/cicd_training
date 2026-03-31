@@ -51,7 +51,7 @@ jobs:
         working-directory: ./segunda-pipeline
         run: npm run test:e2e
 
-  analise de codigo:
+  analise-codigo:
     name: Análise de Código com SonarQube
     runs-on: ubuntu-latest
     needs: sonarqube
@@ -61,4 +61,4 @@ jobs:
         uses: SonarSource/sonarcloud-quality-gate-action@v1
         timeout-minutes: 5
         env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR}}
