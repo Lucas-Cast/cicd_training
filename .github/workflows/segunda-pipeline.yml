@@ -79,3 +79,9 @@ jobs:
           context: ./segunda-pipeline
           file: segunda-pipeline/dockerfile
           tags: ${{ secrets.DOCKERHUB_USER }}/segunda-pipeline:v${{ github.run_number }}
+
+  workflow-testes:
+    uses: ./.github/workflows/Deploy-segunda-pipeline.yml
+    needs: build
+    secrets:
+      RENDER_DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
