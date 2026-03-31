@@ -2,6 +2,9 @@ name: Testes da Segunda Pipeline
 
 on:
   workflow_call:
+    secrets:
+      SONAR_TOKEN:
+        required: true
 
 defaults:
   run:

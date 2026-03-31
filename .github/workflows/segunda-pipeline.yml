@@ -23,6 +23,8 @@ jobs:
   workflow-testes:
     uses: ./.github/workflows/testes-segunda-pipeline.yml
     needs: build
+    secrets:
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
 
   release:
