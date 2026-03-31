@@ -80,7 +80,7 @@ jobs:
           tags: ${{ secrets.DOCKERHUB_USER }}/segunda-pipeline:v${{ github.run_number }}
 
   deploy-homolog:
-    uses: ./.github/workflows/Deploy-segunda-pipeline.yml
+    uses: ./.github/workflows/deploy-segunda-pipeline.yml
     needs: release
     secrets:
       RENDER_DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
