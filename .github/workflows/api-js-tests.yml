@@ -1,0 +1,22 @@
+name: APIJS tests
+
+on:
+  workflow_dispatch:
+  workflow_call:
+
+defaults:
+  run:
+    working-directory: APIs para exercícios/api-js
+
+jobs:
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - run: npm install
+
+      - run: npm test

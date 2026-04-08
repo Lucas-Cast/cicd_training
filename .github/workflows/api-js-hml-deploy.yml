@@ -1,0 +1,19 @@
+name: Deploy API JS to HML
+
+on: 
+  workflow_dispatch:
+  workflow_call:
+    secrets:
+      HML_DEPLOY_HOOK:
+        required: true
+        type: secret
+jobs:
+  deploy-hml:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Deploy to HML
+        run: curl -X POST ${{ secrets.HML_DEPLOY_HOOK }}

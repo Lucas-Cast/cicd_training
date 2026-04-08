@@ -1,0 +1,51 @@
+name: Code quality and security for API JS
+
+on:
+  workflow_dispatch:
+  workflow_call:
+
+defaults:
+  run:
+    working-directory: APIs para exercícios/api-js
+
+jobs: 
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - run: npm install
+
+      - run: npm run lint
+
+  sast:
+    runs-on: ubuntu-latest
+    needs: lint
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Install njsscan
+        run: pip install njsscan
+
+      - name: Run njsscan
+        run: njsscan --exit-warning "APIs para exercícios/api-js"
+
+  sonar:
+    needs: sast
+    runs-on: ubuntu-latest
+    continue-on-error: true
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - run: npm install
+
+      - run: npm run sonar
+        env:
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }}

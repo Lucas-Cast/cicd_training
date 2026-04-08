@@ -1,0 +1,17 @@
+name: API-JS PIPELINE
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'APIs para exercícios/api-js/**'
+jobs: 
+  ci:
+    uses: ./.github/workflows/api-js-ci.yml
+  cd: 
+    uses: ./.github/workflows/api-js-cd.yml
+    needs: ci
+    secrets:
+      HML_DEPLOY_HOOK: ${{ secrets.HML_DEPLOY_HOOK }}

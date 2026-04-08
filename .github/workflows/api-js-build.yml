@@ -1,0 +1,19 @@
+name: Build API JS
+
+on:
+  workflow_call:
+  workflow_dispatch:
+
+defaults:
+  run:
+    working-directory: APIs para exercícios/api-js
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - run: npm install

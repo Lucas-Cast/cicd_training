@@ -1,0 +1,22 @@
+name: API-JS CI
+
+on:
+  workflow_dispatch:
+  workflow_call:
+
+jobs:
+  build:
+    uses: ./.github/workflows/api-js-build.yml
+  lint:
+    needs: build
+    uses: ./.github/workflows/api-js-code-quality-and-security.yml
+  tests:
+    needs: lint
+    uses: ./.github/workflows/api-js-tests.yml
+  code-quality-and-security:
+    needs: tests
+    uses: ./.github/workflows/api-js-code-quality-and-security.yml
+  docker:
+    needs: code-quality-and-security
+    uses: ./.github/workflows/api-js-docker.yml
+ 

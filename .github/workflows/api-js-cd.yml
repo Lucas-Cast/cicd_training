@@ -1,0 +1,22 @@
+name: API-JS CD
+
+on:
+  workflow_dispatch:
+  workflow_call:
+    secrets:
+      HML_DEPLOY_HOOK:
+        required: true
+jobs: 
+  hml-deploy: 
+    uses: ./.github/workflows/api-js-hml-deploy.yml
+    secrets:
+      HML_DEPLOY_HOOK: ${{ secrets.HML_DEPLOY_HOOK }}
+
+  prod-deploy:
+    runs-on: ubuntu-latest
+    environment: production
+    needs: hml-deploy
+
+    steps:
+      - name: Deploy
+        run: echo "Deploying to production..."
