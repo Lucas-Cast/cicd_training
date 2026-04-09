@@ -18,9 +18,9 @@ jobs:
     needs: build
     uses: ./.github/workflows/api-js-code-quality-and-security.yml
   tests:
-    needs: lint
+    needs: code-quality-and-security
     uses: ./.github/workflows/api-js-tests.yml
   docker:
-    needs: code-quality-and-security
+    needs: tests
     uses: ./.github/workflows/api-js-docker.yml
  
