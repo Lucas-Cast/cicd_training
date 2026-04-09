@@ -1,4 +1,6 @@
-import scanner from "sonarqube-scanner"
+import { createRequire } from "node:module"
+const require = createRequire(import.meta.url)
+const scanner = require("sonarqube-scanner")
 
 scanner(
   {
