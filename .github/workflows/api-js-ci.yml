@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   workflow_call:
     secrets:
-      SONAR_HOST_URL:
+      SONAR_ORGANIZATION:
         required: true
       SONAR_TOKEN:
         required: true
@@ -18,7 +18,7 @@ jobs:
     needs: build
     uses: ./.github/workflows/api-js-code-quality-and-security.yml
     secrets:
-      SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+      SONAR_ORGANIZATION: ${{ secrets.SONAR_ORGANIZATION }}
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }}
   tests:

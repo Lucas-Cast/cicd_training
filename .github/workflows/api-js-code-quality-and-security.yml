@@ -4,11 +4,11 @@ on:
   workflow_dispatch:
   workflow_call:
     secrets:
-      SONAR_HOST_URL:
-        required: true
       SONAR_TOKEN:
         required: true
       SONAR_PROJECT_KEY:
+        required: true
+      SONAR_ORGANIZATION:
         required: true
 
 defaults:
@@ -48,11 +48,17 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
 
-      - run: npm install
-
-      - run: npm run sonar
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@v5
+        with:
+          projectBaseDir: APIs para exercícios/api-js
+          args: >
+            -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
+            -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
+            -Dsonar.sources=.
+            -Dsonar.exclusions=node_modules/**,coverage/**,tests/**
         env:
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }}

@@ -11,7 +11,7 @@ jobs:
   ci:
     uses: ./.github/workflows/api-js-ci.yml
     secrets:
-      SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+      SONAR_ORGANIZATION: ${{ secrets.SONAR_ORGANIZATION }}
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }}
   cd: 
