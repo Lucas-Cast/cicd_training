@@ -3,19 +3,23 @@ name: API-JS CI
 on:
   workflow_dispatch:
   workflow_call:
+    secrets:
+      SONAR_HOST_URL:
+        required: true
+      SONAR_TOKEN:
+        required: true
+      SONAR_PROJECT_KEY:
+        required: true
 
 jobs:
   build:
     uses: ./.github/workflows/api-js-build.yml
-  lint:
+  code-quality-and-security:
     needs: build
     uses: ./.github/workflows/api-js-code-quality-and-security.yml
   tests:
     needs: lint
     uses: ./.github/workflows/api-js-tests.yml
-  code-quality-and-security:
-    needs: tests
-    uses: ./.github/workflows/api-js-code-quality-and-security.yml
   docker:
     needs: code-quality-and-security
     uses: ./.github/workflows/api-js-docker.yml

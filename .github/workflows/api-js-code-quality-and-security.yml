@@ -3,6 +3,13 @@ name: Code quality and security for API JS
 on:
   workflow_dispatch:
   workflow_call:
+    secrets:
+      SONAR_HOST_URL:
+        required: true
+      SONAR_TOKEN:
+        required: true
+      SONAR_PROJECT_KEY:
+        required: true
 
 defaults:
   run:
