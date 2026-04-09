@@ -17,6 +17,10 @@ jobs:
   code-quality-and-security:
     needs: build
     uses: ./.github/workflows/api-js-code-quality-and-security.yml
+    secrets:
+      SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }}
   tests:
     needs: code-quality-and-security
     uses: ./.github/workflows/api-js-tests.yml
