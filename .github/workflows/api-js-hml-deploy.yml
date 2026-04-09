@@ -6,7 +6,6 @@ on:
     secrets:
       HML_DEPLOY_HOOK:
         required: true
-        type: secret
 jobs:
   deploy-hml:
     runs-on: ubuntu-latest
